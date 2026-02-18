@@ -43,6 +43,22 @@
         forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
   }
+
+  // Initialisation du tableau de données
+  self.elevesArray = [NSMutableArray array];
+
+  // Création de la UITableView pour afficher les élèves
+  self.tableViewEleves = [[UITableView alloc]
+      initWithFrame:CGRectMake(20, 440, self.view.frame.size.width - 40,
+                               self.view.frame.size.height - 460)
+              style:UITableViewStylePlain];
+  self.tableViewEleves.dataSource = self;
+  self.tableViewEleves.delegate = self;
+  self.tableViewEleves.layer.cornerRadius = 10;
+  self.tableViewEleves.clipsToBounds = YES;
+  [self.tableViewEleves registerClass:[UITableViewCell class]
+               forCellReuseIdentifier:@"EleveCell"];
+  [self.view addSubview:self.tableViewEleves];
 }
 
 // Action quand on appuie sur un bouton de classe
@@ -95,21 +111,19 @@
       return;
     }
 
-    // Lecture de la réponse (identique à simpleClientSocket.c)
+    // Lecture de la réponse
     NSMutableString *reponse = [NSMutableString string];
-    printf("\n--- Liste des eleves ---\n");
     bzero(buffer, 256);
     while ((n = (int)read(sockfd, buffer, 255)) > 0) {
-      printf("%s", buffer);
       buffer[n] = '\0';
       [reponse appendFormat:@"%s", buffer];
       bzero(buffer, 256);
     }
-    printf("------------------------\n");
     close(sockfd);
 
-    // Parsing du CSV : affichage nom + prénom dans la console
-    printf("\n--- Parsing : Nom Prenom ---\n");
+    // Parsing du CSV : construction de la liste nom + prénom
+    NSMutableArray *nouveauxEleves = [NSMutableArray array];
+    printf("\n Parsing : Nom Prenom \n");
     for (NSString *ligne in [reponse
              componentsSeparatedByCharactersInSet:[NSCharacterSet
                                                       newlineCharacterSet]]) {
@@ -118,11 +132,36 @@
       NSArray *champs = [ligne componentsSeparatedByString:@";"];
       // champs[4] = nom, champs[6] = prenom (on ignore l'en-tête)
       if (champs.count >= 7 && ![champs[0] isEqualToString:@"etudid"]) {
-        printf("%s %s\n", [champs[4] UTF8String], [champs[6] UTF8String]);
+        NSString *nomPrenom =
+            [NSString stringWithFormat:@"%@ %@", champs[4], champs[6]];
+        printf("%s\n", [nomPrenom UTF8String]);
+        [nouveauxEleves addObject:nomPrenom];
       }
     }
-    printf("----------------------------\n");
+
+    // Mise à jour de la table sur le thread principal
+    dispatch_async(dispatch_get_main_queue(), ^{
+      self.elevesArray = nouveauxEleves;
+      [self.tableViewEleves reloadData];
+    });
   });
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView
+    numberOfRowsInSection:(NSInteger)section {
+  return self.elevesArray.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+  UITableViewCell *cell =
+      [tableView dequeueReusableCellWithIdentifier:@"EleveCell"
+                                      forIndexPath:indexPath];
+  cell.textLabel.text = self.elevesArray[indexPath.row];
+  cell.textLabel.font = [UIFont systemFontOfSiz e:16];
+  return cell;
 }
 
 @end
