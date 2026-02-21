@@ -1,14 +1,6 @@
 #import "ViewController.h"
 #include "client.h"
 
-// On ajoute UITableViewDataSource et UITableViewDelegate (c'est ce qui fait marcher le tableau)
-@interface ViewController () <UITableViewDataSource, UITableViewDelegate>
-
-@property (weak, nonatomic) IBOutlet UITableView *maTableView;
-@property (strong, nonatomic) NSMutableArray *donneesObjC; // Le tableau version Apple
-
-@end
-
 @implementation ViewController
 
 - (void)viewDidLoad {

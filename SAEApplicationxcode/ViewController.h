@@ -7,8 +7,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+// On met les protocoles ici, exactement comme le prof
+@interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
+// On déclare la TableView et notre tableau ici
+@property (weak, nonatomic) IBOutlet UITableView *maTableView;
+@property (strong, nonatomic) NSMutableArray *donneesObjC;
 
 @end
 
