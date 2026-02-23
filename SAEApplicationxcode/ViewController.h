@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 
-// On met les protocoles ici, exactement comme le prof
+// On met les protocoles ici
 @interface ViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 // On déclare la TableView et notre tableau ici

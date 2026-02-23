@@ -16,9 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="WVN-6V-R9z">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="WVN-6V-R9z">
                                 <rect key="frame" x="9" y="59" width="377" height="675"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CelluleEleve" id="5h8-5L-LHE">
@@ -35,18 +34,57 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Ap7-8b-qRC"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bZE-S8-1jg">
-                                <rect key="frame" x="127" y="742" width="138" height="89"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bZE-S8-1jg">
+                                <rect key="frame" x="16" y="710" width="138" height="89"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Charger RT1FA"/>
                                 <connections>
                                     <action selector="clickBoutonRT1FA:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6Ir-kS-ioT"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5An-2g-ON0">
+                                <rect key="frame" x="209" y="737" width="132" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Charger RT1FI"/>
+                                <connections>
+                                    <action selector="clickBoutonRT1FI:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZNY-mU-Qza"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lCZ-Qt-XIa">
+                                <rect key="frame" x="15" y="783" width="141" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Charger RT2FA"/>
+                                <connections>
+                                    <action selector="clickBoutonRT2FA:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8YV-UC-vyO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SZ2-qU-NEb">
+                                <rect key="frame" x="209" y="780" width="134" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Charger RT2FI"/>
+                                <connections>
+                                    <action selector="clickBoutonRT2FI:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0pu-bt-ZXG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="WVN-6V-R9z" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="060-6b-4ab"/>
+                            <constraint firstItem="5An-2g-ON0" firstAttribute="leading" secondItem="SZ2-qU-NEb" secondAttribute="leading" id="6hW-m8-X6G"/>
+                            <constraint firstItem="WVN-6V-R9z" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="9" id="6q3-qX-dUg"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="WVN-6V-R9z" secondAttribute="trailing" constant="7" id="82V-zk-06j"/>
+                            <constraint firstItem="SZ2-qU-NEb" firstAttribute="top" secondItem="5An-2g-ON0" secondAttribute="bottom" constant="8" id="9W9-U4-LBH"/>
+                            <constraint firstItem="bZE-S8-1jg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="DWH-bG-UHg"/>
+                            <constraint firstItem="lCZ-Qt-XIa" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="I7T-1H-XsV"/>
+                            <constraint firstItem="5An-2g-ON0" firstAttribute="top" secondItem="WVN-6V-R9z" secondAttribute="bottom" constant="3" id="Jzi-zX-sYj"/>
+                            <constraint firstItem="bZE-S8-1jg" firstAttribute="centerX" secondItem="lCZ-Qt-XIa" secondAttribute="centerX" id="Nom-XY-ony"/>
+                            <constraint firstItem="lCZ-Qt-XIa" firstAttribute="top" secondItem="WVN-6V-R9z" secondAttribute="bottom" constant="49" id="QUO-yK-cjs"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="SZ2-qU-NEb" secondAttribute="trailing" constant="50" id="XqD-UI-IfH"/>
+                            <constraint firstItem="bZE-S8-1jg" firstAttribute="baseline" secondItem="5An-2g-ON0" secondAttribute="baseline" id="fAM-3z-CNa"/>
+                            <constraint firstItem="lCZ-Qt-XIa" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="fv7-xK-ErT"/>
+                            <constraint firstItem="5An-2g-ON0" firstAttribute="leading" secondItem="bZE-S8-1jg" secondAttribute="trailing" constant="55" id="wHe-17-fqO"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="maTableView" destination="WVN-6V-R9z" id="6rN-cq-baw"/>
@@ -54,7 +92,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="32.824427480916029" y="-27.464788732394368"/>
+            <point key="canvasLocation" x="277" y="-39"/>
         </scene>
     </scenes>
     <resources>

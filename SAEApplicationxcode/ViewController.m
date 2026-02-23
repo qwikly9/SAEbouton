@@ -14,12 +14,12 @@
     self.maTableView.delegate = self;
 }
 
-- (IBAction)clickBoutonRT1FA:(id)sender {
+- (void)chargerClasse:(NSString *)nomPromo {
     int sockfd = se_connecter_au_serveur("127.0.0.1", 5001);
     
     if (sockfd >= 0) {
-        demander_classe(sockfd, "RT1FA"); // Ça remplit notre tableau en C !
-        close(sockfd);
+        // [nomPromo UTF8String] transforme le texte Apple en char C
+        demander_classe(sockfd, (char *)[nomPromo UTF8String]);
         
         // On vide l'ancien affichage
         [self.donneesObjC removeAllObjects];
@@ -38,21 +38,31 @@
     }
 }
 
-// --- LES DEUX FONCTIONS OBLIGATOIRES DU TUTORIEL TABLEVIEW ---
 
-// 1. Combien y a-t-il de lignes dans le tableau ?
+- (IBAction)clickBoutonRT1FA:(id)sender {
+    [self chargerClasse:@"RT1FA"];
+}
+
+- (IBAction)clickBoutonRT1FI:(id)sender {
+    [self chargerClasse:@"RT1FI"];
+}
+
+- (IBAction)clickBoutonRT2FA:(id)sender {
+    [self chargerClasse:@"RT2FA"];
+}
+
+- (IBAction)clickBoutonRT2FI:(id)sender {
+    [self chargerClasse:@"RT2FI"];
+}
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.donneesObjC.count;
 }
 
-// 2. Que met-on dans chaque case du tableau ?
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // On récupère la cellule qu'on a nommée "CelluleEleve" dans le Storyboard
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CelluleEleve" forIndexPath:indexPath];
-    
-    // On écrit le nom de l'élève dedans
     cell.textLabel.text = self.donneesObjC[indexPath.row];
-    
     return cell;
 }
 
